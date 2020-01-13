@@ -1,0 +1,8 @@
+#使用pigz来高速压缩文件夹
+#使用PBS提交任务
+#!/bin/sh                 //指明所用的 shell
+#PBS –N pigz_task     //设置任务名称
+
+#PBS -l  nodes=2:ppn=20 //申请需要的资源，2个节点，每个20个核
+#PBS -j oe                       
+tar -cvf - /data/home/last_sdf/ | /data/home/pigz -p 16 > /data/home/last_sdf.tar.gz //全程都需要绝对路径
